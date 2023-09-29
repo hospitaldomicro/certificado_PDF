@@ -14,33 +14,59 @@ const upload = multer({ storage: storage });
 app.get("/", (req, res) => {
     // Aqui você envia o formulário HTML para o cliente
     const form = `
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Formulário para PDF</title>
-        </head>
-        <body>
-            <h1>Preencha o Formulário</h1>
+    <!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <title>Formulário para PDF</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="text-center">
+                <h1>Preencha o Formulário</h1>
+            </div>
             <form action="/gerar-pdf" method="post" enctype="multipart/form-data">
-                <label for="name">Nome do Pet:</label>
-                <input type="text" id="name_pet" name="name_pet" required><br><br>
-                
-                <label for="data_adocao">Data de Adoção:</label>
-                <input type="date" id="data_adocao" name="data_adocao" required><br><br>
-
-                <label for="especie">Espécie:</label>
-                <input type="text" id="especie" name="especie" required><br><br>
-                
-                <label for="genero">Gênero:</label><br>
-                <input type="text" id="genero" name="genero" required><br><br>
-
-                <label for="avatar">Choose a profile picture:</label>
-                <input type="file" id="foto" name="foto" accept="image/jpeg" />
-                
-                <input type="submit" value="Gerar Certificado em PDF">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="name_pet" class="form-label">Nome do Pet:</label>
+                            <input type="text" id="name_pet" name="name_pet" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="data_adocao" class="form-label">Data de Adoção:</label>
+                            <input type="date" id="data_adocao" name="data_adocao" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="especie" class="form-label">Espécie:</label>
+                            <input type="text" id="especie" name="especie" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="genero" class="form-label">Gênero:</label>
+                            <input type="text" id="genero" name="genero" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="foto" class="form-label">Escolha uma foto de perfil:</label>
+                    <input type="file" id="foto" name="foto" class="form-control" accept="image/jpeg">
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Gerar Certificado em PDF</button>
+                </div>
             </form>
-        </body>
-        </html>
+        </div>
+    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+    </html>    
     `;
     res.send(form);
 });
